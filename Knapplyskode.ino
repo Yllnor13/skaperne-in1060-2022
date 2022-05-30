@@ -1,11 +1,5 @@
-int groenn = 10;
-int gul = 11;
-int blaa = 12;
-int roed = 13;
 int knapp1 = 0;
 int knapp2 = 1;
-int knapp3 = 3;
-int knapp4 = 4;
 
 boolean knapplys1 = false;
 boolean knapplys2 = false;
