@@ -1,36 +1,35 @@
 #include <Wire.h>
 
+//LED variabler
 int redLED = 12;
 int grnLED = 11;
 int ylwLED = 10;
 int bluLED= 9;
 
-int red = 0;
-int blu = 1;
-int grn = 2;
-int ylw = 3;
-
+//variabler for hjelp kommer knapp
 int redbtn = 8;
 int grnbtn = 7;
 int ylwbtn = 6;
 int blubtn = 5;
 
+//variabler for trenger hjelp knappen
 int redbutton = A0;
 int grnbutton = A1;
 int ylwbutton = A2;
 int blubutton = A3;
 
+//State for hjelp kommer knapp
 int redState = 0;
 int grnState = 0;
 int ylwState = 0;
 int bluState = 0;
 
+//State for trenger hjelp knapp
 int redHelpState = 0;
 int grnHelpState = 0;
 int ylwHelpState = 0;
 int bluHelpState = 0;
 
-int whichLED = 5;
 int valueReceived = 5;
 int sendValue = 0;
 
@@ -54,19 +53,18 @@ void setup() {
 
   Wire.begin(9);
 
-  Wire.onReceive(receiveEvent);
-  Wire.onRequest(requestEvent);
+  Wire.onReceive(receiveEvent); //dette skjer når arduino får ting
+  Wire.onRequest(requestEvent); //dette skjer når arduino spør om ting
 }
 
 void receiveEvent(int bytes) {
-  //Read one value from the I2C
-  valueReceived = Wire.read();
-  //Display the value received  
+  //leser verdien den får
+  valueReceived = Wire.read(); 
   Serial.println(valueReceived);
 }
 
 void requestEvent(){
-  //Tell the master whether the led is on or not
+  //sender den til master
   Wire.write(sendValue);
 }
 
@@ -81,6 +79,7 @@ void loop() {
   ylwHelpState = digitalRead(ylwbutton);
   bluHelpState = digitalRead(blubutton);
 
+  //slår på LED lyset med tilsvarende verdi
   if(valueReceived == 0){
     digitalWrite(redLED, HIGH);
   }
@@ -98,6 +97,7 @@ void loop() {
   help_coming();
 }
 
+//slår på lyset som skal lyse og endrer variabelen som blir sendt til master
 void help_needed(){
   if(redHelpState == HIGH){
     digitalWrite(redLED, HIGH);
@@ -117,6 +117,7 @@ void help_needed(){
   }
 }
 
+//slår av lyset og endrer variablen som blir sendt til master
 void help_coming(){
   if(redState == HIGH){
     digitalWrite(redLED, LOW);
