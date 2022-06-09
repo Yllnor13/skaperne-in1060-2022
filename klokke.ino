@@ -1,68 +1,62 @@
-//varuabler for lys
-int blaalys = 12;
-int groonlys = 11;
-int roodlys = 10;
-int gullys = 9;
+//LED variabler
+int redLED = 12;
+int grnLED = 11;
+int ylwLED = 10;
+int bluLED= 9;
 
-//variabler for svar knappene for hjelp
-int svar_blaa = 8;
-int svar_groon = 7;
-int svar_rood = 6;
-int svar_gul = 5;
+//variabler for hjelp kommer knapp
+int redbtn = 8;
+int grnbtn = 7;
+int ylwbtn = 6;
+int blubtn = 5;
 
-//variabler for baren sender hjelp
-int hjelp_blaa = A0;
-int hjelp_groon = A1;
-int hjelp_rood = A2;
-int hjelp_gul = A3;
+//variabler for trenger hjelp knappen
+int redbutton = A0;
+int grnbutton = A1;
+int ylwbutton = A2;
+int blubutton = A3;
 
-//states for svar til hjelp
-int kommer_blaa = 0;
-int kommer_groon = 0;
-int kommer_rood = 0;
-int kommer_gul = 0;
+//State for hjelp kommer knapp
+int redState = 0;
+int grnState = 0;
+int ylwState = 0;
+int bluState = 0;
 
-//states for trenger hjelp
-int send_blaa = 0;
-int send_groon = 0;
-int send_rood = 0;
-int send_gul = 0;
+//State for trenger hjelp knapp
+int redHelpState = 0;
+int grnHelpState = 0;
+int ylwHelpState = 0;
+int bluHelpState = 0;
 
 void setup() {
-  pinMode(blaalys, OUTPUT);
-  pinMode(groonlys, OUTPUT);
-  pinMode(roodlys, OUTPUT);
-  pinMode(gullys, OUTPUT);
-  
-  pinMode(svar_blaa, INPUT);
-  pinMode(svar_groon, INPUT);
-  pinMode(svar_rood, INPUT);
-  pinMode(svar_gul, INPUT);
+  pinMode(redLED, OUTPUT);
+  pinMode(grnLED, OUTPUT);
+  pinMode(bluLED, OUTPUT);
+  pinMode(ylwLED, OUTPUT);
 
-  pinMode(hjelp_blaa, INPUT);
-  pinMode(hjelp_groon, INPUT);
-  pinMode(hjelp_rood, INPUT);
-  pinMode(hjelp_gul, INPUT);
+  pinMode(redbtn, INPUT);
+  pinMode(grnbtn, INPUT);
+  pinMode(blubtn, INPUT);
+  pinMode(ylwbtn, INPUT);
 
-  digitalWrite(blaalys, HIGH);
-  digitalWrite(groonlys, HIGH);
-  digitalWrite(roodlys, HIGH);
-  digitalWrite(gullys, HIGH);
+  pinMode(redbutton, INPUT);
+  pinMode(grnbutton, INPUT);
+  pinMode(blubutton, INPUT);
 }
 
 void loop() {
-  kommer_blaa = digitalRead(svar_blaa);
-  kommer_groon = digitalRead(svar_groon);
-  kommer_rood = digitalRead(svar_rood);
-  kommer_gul = digitalRead(svar_gul);
+  redState = digitalRead(redbtn);
+  grnState = digitalRead(grnbtn);
+  ylwState = digitalRead(ylwbtn);
+  bluState = digitalRead(blubtn);
+
+  redHelpState = digitalRead(redbutton);
+  grnHelpState = digitalRead(grnbutton);
+  ylwHelpState = digitalRead(ylwbutton);
+  bluHelpState = digitalRead(blubutton);
   
-  send_blaa = digitalRead(hjelp_blaa);
-  send_groon = digitalRead(hjelp_groon);
-  send_rood = digitalRead(hjelp_rood);
-  send_gul = digitalRead(hjelp_gul);
-  
-  hjelpkommer();
-  sendhjelp();
+  help_needed();
+  help_coming();
 }
 
 /*
@@ -70,18 +64,18 @@ void loop() {
  * dette reflektere ikke hvordan det skal faktisk være.
  * dette er kun for å simpulere hvordan armbåndet reagerer.
 */
-void hjelpkommer(){
-   if(kommer_blaa == HIGH){
-    digitalWrite(blaalys, LOW);
+void help_needed(){
+  if(redHelpState == HIGH){
+    digitalWrite(redLED, HIGH);
   }
-  if(kommer_groon == HIGH){
-    digitalWrite(groonlys, LOW);
+  if(grnHelpState == HIGH){
+    digitalWrite(grnLED, HIGH);
   }
-  if(kommer_rood == HIGH){
-    digitalWrite(roodlys, LOW);
+  if(ylwHelpState == HIGH){
+    digitalWrite(ylwLED, HIGH);
   }
-  if(kommer_gul == HIGH){
-    digitalWrite(gullys, LOW);
+  if(bluHelpState == HIGH){
+    digitalWrite(bluLED, HIGH);
   }
 }
 
@@ -90,17 +84,21 @@ void hjelpkommer(){
  * dette reflektere ikke hvordan det skal faktisk være.
  * dette er kun for å simpulere hva armbåndet gjør når den sender at baren trenger hjelp.
 */
-void sendhjelp(){
-  if(send_blaa == HIGH){
-    digitalWrite(blaalys, HIGH);
+void help_coming(){
+  if(redState == HIGH){
+    digitalWrite(redLED, LOW);
+    sendValue = 5;
   }
-  if(send_groon == HIGH){
-    digitalWrite(groonlys, HIGH);
+  if(grnState == HIGH){
+    digitalWrite(grnLED, LOW);
+    sendValue = 5;
   }
-  if(send_rood == HIGH){
-    digitalWrite(roodlys, HIGH);
+  if(ylwState == HIGH){
+    digitalWrite(ylwLED, LOW);
+    sendValue = 5;
   }
-  if(send_gul == HIGH){
-    digitalWrite(gullys, HIGH);
+  if(bluState == HIGH){
+    digitalWrite(bluLED, LOW);
+    sendValue = 5;
   }
 }
