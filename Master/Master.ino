@@ -29,7 +29,10 @@ void loop() {
       x = 5;
     }
   }
+  transmission();
+}
 
+void transmission(){
   Wire.beginTransmission(9); // transmit to device #9
   Wire.write(x);              // sends x 
   Wire.endTransmission();    // stop transmitting
