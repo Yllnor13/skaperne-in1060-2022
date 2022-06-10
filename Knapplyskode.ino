@@ -1,7 +1,6 @@
 int button = 11;
 int buttonState = 0;
 int LED = 12;
-bool LEDlys = false;
 
 void setup() {
   pinMode(button, INPUT);
@@ -11,14 +10,9 @@ void setup() {
 
 void loop() {
   if(buttonState == HIGH){
-    //her saa skal lyset lyse naar man trykker paa knappen, og saa slaar lyset seg av naar man trykker det igjen
-    LEDlys = !LEDlys;
-    delay(500);
-  }
-  if(LEDlys){
-    digitalWrite(LED, HIGH);
-  }
-  else{
-    digitalWrite(LED, LOW);
+    /*
+    her så skal knappen sende signal til armbaands arduinoen om at den skal slaa paa lyset
+    siden vi ikke har noen maate aa sende signal paa, saa forblir denne if setningen tom.
+    */
   }
 }
