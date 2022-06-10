@@ -1,11 +1,10 @@
+//variabler for komponenter
 int button = 11;
 int buttonState = 0;
-int LED = 12;
 
 void setup() {
   pinMode(button, INPUT);
   buttonState = digitalRead(button);
-  pinMode(LED, OUTPUT);
 }
 
 void loop() {
