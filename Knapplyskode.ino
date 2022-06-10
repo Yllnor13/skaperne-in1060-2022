@@ -1,28 +1,24 @@
-int knapp1 = 0;
-int knapp2 = 1;
-
-boolean knapplys1 = false;
-boolean knapplys2 = false;
+int button = 11;
+int buttonState = 0;
+int LED = 12;
+bool LEDlys = false;
 
 void setup() {
-  pinMode(groenn, OUTPUT);
+  pinMode(button, INPUT);
+  buttonState = digitalRead(button);
+  pinMode(LED, OUTPUT);
 }
 
 void loop() {
-  if(knapplys1==true){
-    digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+  if(buttonState == HIGH){
+    //her saa skal lyset lyse naar man trykker paa knappen, og saa slaar lyset seg av naar man trykker det igjen
+    LEDlys = !LEDlys;
+    delay(500);
   }
-  if(knapplys2==true){
-    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+  if(LEDlys){
+    digitalWrite(LED, HIGH);
   }
-  if(!digitalRead(knapp1) == HIGH){
-    knapplys1=true;
-    knapplys2=false;
-    //knapplys1 = true;
-  }
-  
-  if(!digitalRead(knapp2) == HIGH){
-    knapplys1=true;
-    knapplys2=false;
+  else{
+    digitalWrite(LED, LOW);
   }
 }
