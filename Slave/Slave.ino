@@ -105,15 +105,15 @@ void help_needed(){
   }
   if(grnHelpState == HIGH){
     digitalWrite(grnLED, HIGH);
-    sendValue = 0;
+    sendValue = 1;
   }
   if(ylwHelpState == HIGH){
     digitalWrite(ylwLED, HIGH);
-    sendValue = 0;
+    sendValue = 2;
   }
   if(bluHelpState == HIGH){
     digitalWrite(bluLED, HIGH);
-    sendValue = 0;
+    sendValue = 3;
   }
 }
 
@@ -125,14 +125,14 @@ void help_coming(){
   }
   if(grnState == HIGH){
     digitalWrite(grnLED, LOW);
-    sendValue = 5;
+    sendValue = 6;
   }
   if(ylwState == HIGH){
     digitalWrite(ylwLED, LOW);
-    sendValue = 5;
+    sendValue = 7;
   }
   if(bluState == HIGH){
     digitalWrite(bluLED, LOW);
-    sendValue = 5;
+    sendValue = 8;
   }
 }
