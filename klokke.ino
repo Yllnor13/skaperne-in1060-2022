@@ -87,18 +87,14 @@ void help_needed(){
 void help_coming(){
   if(redState == HIGH){
     digitalWrite(redLED, LOW);
-    sendValue = 5;
   }
   if(grnState == HIGH){
     digitalWrite(grnLED, LOW);
-    sendValue = 5;
   }
   if(ylwState == HIGH){
     digitalWrite(ylwLED, LOW);
-    sendValue = 5;
   }
   if(bluState == HIGH){
     digitalWrite(bluLED, LOW);
-    sendValue = 5;
   }
 }
