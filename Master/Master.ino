@@ -28,7 +28,7 @@ void loop() {
   if(buttonState == HIGH){
     x = 0; //dette gjør at lyset slår seg på i slave
   }else{
-    if(receivedValue == 5){ //dette slår ikke på noe led i slave
+    if(receivedValue >= 5){ //dette slår ikke på noe led i slave
       x = 5;
     }
   }
